@@ -1,0 +1,56 @@
+*termnavi.nvim.txt*
+
+==============================================================================
+Lua module: termnavi                                  *termnavi.nvim-termnavi*
+
+mark({opts})                                                 *termnavi.mark()*
+  Set extmark to navigate in terminal.
+
+  Parameters: ~
+    {opts} (table) {extmark_opts = (table), prompt_pattern = (string)}
+
+list()                                                       *termnavi.list()*
+  Return extmarks info in this plugin namespace.
+
+  Return: ~
+    (table) {id = (number), row = (number)}[]
+
+next()                                                       *termnavi.next()*
+  Move cursor to the next extmark in this plugin namespace.
+
+previous()                                               *termnavi.previous()*
+  Move cursor to the previous extmark in this plugin namespace.
+
+clear()                                                     *termnavi.clear()*
+  Clear extmarks in this plugin namespace.
+
+==============================================================================
+EXAMPLES                                              *termnavi.nvim-EXAMPLES*
+
+>
+  vim.api.nvim_create_autocmd({ "TermOpen" }, {
+    group = vim.api.nvim_create_augroup("termnavi_setting", {}),
+    pattern = { "*" },
+    callback = function()
+      vim.keymap.set("t", "<CR>", function()
+        require("termnavi").mark({
+          extmark_opts = {
+            hl_eol = true,
+            hl_group = "CursorLine",
+            number_hl_group = "CursorLine",
+          },
+        })
+        return "<CR>"
+      end, { expr = true })
+      vim.keymap.set({ "n", "x", "o" }, "]]", function()
+        require("termnavi").next()
+      end, { buffer = true })
+      vim.keymap.set({ "n", "x", "o" }, "[[", function()
+        require("termnavi").previous()
+      end, { buffer = true })
+    end,
+  })
+<
+
+==============================================================================
+vim:tw=78:ts=8:ft=help

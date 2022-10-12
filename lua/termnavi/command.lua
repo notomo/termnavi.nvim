@@ -29,7 +29,11 @@ function ShowError.mark(opts)
 
   vim.api.nvim_buf_clear_namespace(bufnr, ns, prompt_row - 1, prompt_row)
 
-  local extmark_opts = vim.tbl_extend("force", { end_row = current_row }, opts.extmark_opts)
+  local default_opts = {
+    end_row = current_row,
+    priority = 0,
+  }
+  local extmark_opts = vim.tbl_extend("force", default_opts, opts.extmark_opts)
   vim.api.nvim_buf_set_extmark(bufnr, ns, prompt_row - 1, 0, extmark_opts)
 end
 

@@ -27,7 +27,10 @@ function ShowError.mark(opts)
     prompt_row = search_result == 0 and current_row or search_result
   end
 
-  vim.api.nvim_buf_clear_namespace(bufnr, ns, prompt_row - 1, prompt_row)
+  local current_extmarks = vim.api.nvim_buf_get_extmarks(bufnr, ns, { prompt_row - 1, 0 }, { prompt_row, 0 }, {})
+  if #current_extmarks > 0 then
+    return nil
+  end
 
   local default_opts = {
     end_row = current_row,

@@ -181,10 +181,12 @@ describe("termnavi.list()", function()
       {
         id = 1,
         row = 1,
+        end_row = 1,
       },
       {
         id = 2,
         row = 3,
+        end_row = 3,
       },
     }
     assert.is_same(want, got)

@@ -13,7 +13,7 @@ list()                                                       *termnavi.list()*
   Return extmarks info in this plugin namespace.
 
   Return: ~
-    (table) {id = (number), row = (number)}[]
+    (table) {id = (number), row = (number), end_row = (number)}[]
 
 next()                                                       *termnavi.next()*
   Move cursor to the next extmark in this plugin namespace.

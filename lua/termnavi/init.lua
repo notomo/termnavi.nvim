@@ -7,7 +7,7 @@ function M.mark(opts)
 end
 
 --- Return extmarks info in this plugin namespace.
---- @return table: {id = (number), row = (number)}[]
+--- @return table: {id = (number), row = (number), end_row = (number)}[]
 function M.list()
   return require("termnavi.command").list()
 end

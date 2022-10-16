@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
         },
       })
       return "<CR>"
-    end, { expr = true })
+    end, { expr = true, buffer = true })
     vim.keymap.set({ "n", "x", "o" }, "]]", function()
       require("termnavi").next()
     end, { buffer = true })

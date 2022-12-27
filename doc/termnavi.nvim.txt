@@ -7,7 +7,7 @@ mark({opts})                                                 *termnavi.mark()*
   Set extmark to navigate in terminal.
 
   Parameters: ~
-    {opts} (table) {extmark_opts = (table), prompt_pattern = (string)}
+    {opts} (table|nil) {extmark_opts = (table), prompt_pattern = (string)}
 
 list()                                                       *termnavi.list()*
   Return extmarks info in this plugin namespace.

@@ -1,7 +1,7 @@
 local M = {}
 
 --- Set extmark to navigate in terminal.
---- @param opts table: {extmark_opts = (table), prompt_pattern = (string)}
+--- @param opts table|nil: {extmark_opts = (table), prompt_pattern = (string)}
 function M.mark(opts)
   require("termnavi.command").mark(opts)
 end

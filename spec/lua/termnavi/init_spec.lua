@@ -54,9 +54,11 @@ describe("termnavi.mark()", function()
     helper.open_terminal_sync()
     vim.bo.scrollback = 1
 
-    termnavi.mark()
-
-    assert.exists_message("Limitation: does not work")
+    local ok, result = pcall(function()
+      termnavi.mark()
+    end)
+    assert.is_false(ok)
+    assert.equals("[termnavi] Limitation: does not work if line count exceeds vim.bo.scrollback", result)
   end)
 end)
 

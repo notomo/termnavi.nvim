@@ -1,10 +1,9 @@
-local ShowError = require("termnavi.vendor.misclib.error_handler").for_show_error()
-local ReturnValue = require("termnavi.vendor.misclib.error_handler").for_return_value()
+local M = {}
 
 local vim = vim
 local ns = vim.api.nvim_create_namespace("termnavi")
 
-function ShowError.mark(opts)
+function M.mark(opts)
   opts = opts or {}
   opts.extmark_opts = opts.extmark_opts or {}
   opts.prompt_pattern = opts.prompt_pattern or ""
@@ -40,7 +39,7 @@ function ShowError.mark(opts)
   vim.api.nvim_buf_set_extmark(bufnr, ns, prompt_row - 1, 0, extmark_opts)
 end
 
-function ReturnValue.list()
+function M.list()
   local bufnr = vim.api.nvim_get_current_buf()
   local extmarks = vim.api.nvim_buf_get_extmarks(bufnr, ns, 0, -1, { details = true })
   return vim.tbl_map(function(extmark)
@@ -59,7 +58,7 @@ local move_cursor = function(window_id, extmark)
   vim.api.nvim_win_set_cursor(window_id, { row + 1, 0 })
 end
 
-function ShowError.next()
+function M.next()
   local window_id = vim.api.nvim_get_current_win()
   local current_row = vim.api.nvim_win_get_cursor(window_id)[1]
 
@@ -75,7 +74,7 @@ function ShowError.next()
   move_cursor(window_id, extmark)
 end
 
-function ShowError.previous()
+function M.previous()
   local window_id = vim.api.nvim_get_current_win()
   local current_row = vim.api.nvim_win_get_cursor(window_id)[1]
 
@@ -91,9 +90,9 @@ function ShowError.previous()
   move_cursor(window_id, extmark)
 end
 
-function ShowError.clear()
+function M.clear()
   local bufnr = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
 end
 
-return vim.tbl_extend("force", ShowError:methods(), ReturnValue:methods())
+return M

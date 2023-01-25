@@ -3,10 +3,7 @@ local M = {}
 --- Set extmark to navigate in terminal.
 --- @param opts table|nil: {extmark_opts = (table), prompt_pattern = (string)}
 function M.mark(opts)
-  local err = require("termnavi.command").mark(opts)
-  if err then
-    error("[termnavi] " .. err, 0)
-  end
+  require("termnavi.command").mark(opts)
 end
 
 --- Return extmarks info in this plugin namespace.

@@ -12,7 +12,8 @@ function M.mark(opts)
   local scrollback = vim.bo[bufnr].scrollback
   local line_count = vim.api.nvim_buf_line_count(bufnr)
   if line_count >= scrollback then
-    return "Limitation: does not work if line count exceeds vim.bo.scrollback"
+    require("termnavi.vendor.misclib.message").warn("Limitation: does not work if line count exceeds vim.bo.scrollback")
+    return
   end
 
   -- TODO: set hook to clear marks when line count exceeds scrollback
@@ -28,7 +29,7 @@ function M.mark(opts)
 
   local current_extmarks = vim.api.nvim_buf_get_extmarks(bufnr, ns, { prompt_row - 1, 0 }, { prompt_row, 0 }, {})
   if #current_extmarks > 0 then
-    return nil
+    return
   end
 
   local default_opts = {

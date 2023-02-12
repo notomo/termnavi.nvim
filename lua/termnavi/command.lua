@@ -16,8 +16,6 @@ function M.mark(opts)
     return
   end
 
-  -- TODO: set hook to clear marks when line count exceeds scrollback
-
   local window_id = vim.api.nvim_get_current_win()
   local current_row = vim.api.nvim_win_get_cursor(window_id)[1]
 

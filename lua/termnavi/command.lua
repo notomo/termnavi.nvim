@@ -13,6 +13,7 @@ function M.mark(opts)
   local line_count = vim.api.nvim_buf_line_count(bufnr)
   if line_count >= scrollback then
     require("termnavi.vendor.misclib.message").warn("Limitation: does not work if line count exceeds vim.bo.scrollback")
+    M.clear()
     return
   end
 

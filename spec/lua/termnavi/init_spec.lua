@@ -58,6 +58,17 @@ describe("termnavi.mark()", function()
 
     assert.exists_message("Limitation: does not work if line count exceeds vim.bo.scrollback")
   end)
+
+  it("clears marks if line count exceeds scrollback", function()
+    helper.open_terminal_sync()
+
+    termnavi.mark()
+    vim.bo.scrollback = 1
+    termnavi.mark()
+
+    local got = termnavi.list()
+    assert.list_length(got, 0)
+  end)
 end)
 
 describe("termnavi.next()", function()

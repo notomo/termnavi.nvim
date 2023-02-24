@@ -1,13 +1,22 @@
 local M = {}
 
+--- @class TermnaviMarkOption
+--- @field extmark_opts table? See |nvim_buf_set_extmark()|
+--- @field prompt_pattern string? vim regex to search shell prompt
+
 --- Set extmark to navigate in terminal.
---- @param opts table|nil: {extmark_opts = (table), prompt_pattern = (string)}
+--- @param opts TermnaviMarkOption?: |TermnaviMarkOption|
 function M.mark(opts)
   require("termnavi.command").mark(opts)
 end
 
+--- @class TermnaviMark
+--- @field id integer extmark id
+--- @field row integer
+--- @field end_row integer
+
 --- Return extmarks info in this plugin namespace.
---- @return table: {id = (number), row = (number), end_row = (number)}[]
+--- @return TermnaviMark[] |TermnaviMark|
 function M.list()
   return require("termnavi.command").list()
 end

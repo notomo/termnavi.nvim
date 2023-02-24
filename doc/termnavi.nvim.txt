@@ -7,13 +7,13 @@ mark({opts})                                                 *termnavi.mark()*
   Set extmark to navigate in terminal.
 
   Parameters: ~
-    {opts} (table|nil) {extmark_opts = (table), prompt_pattern = (string)}
+    {opts} (TermnaviMarkOption?) |TermnaviMarkOption|
 
 list()                                                       *termnavi.list()*
   Return extmarks info in this plugin namespace.
 
   Return: ~
-    (table) {id = (number), row = (number), end_row = (number)}[]
+    (TermnaviMark[]) |TermnaviMark|
 
 next()                                                       *termnavi.next()*
   Move cursor to the next extmark in this plugin namespace.
@@ -23,6 +23,20 @@ previous()                                               *termnavi.previous()*
 
 clear()                                                     *termnavi.clear()*
   Clear extmarks in this plugin namespace.
+
+==============================================================================
+STRUCTURE                                            *termnavi.nvim-STRUCTURE*
+
+TermnaviMarkOption                                        *TermnaviMarkOption*
+
+- {extmark_opts} (table?) See |nvim_buf_set_extmark()|
+- {prompt_pattern} (string?) vim regex to search shell prompt
+
+TermnaviMark                                                    *TermnaviMark*
+
+- {id} (integer) extmark id
+- {row} (integer)
+- {end_row} (integer)
 
 ==============================================================================
 EXAMPLES                                              *termnavi.nvim-EXAMPLES*

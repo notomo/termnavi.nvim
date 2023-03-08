@@ -16,7 +16,7 @@ end
 --- @field end_row integer
 
 --- Return extmarks info in this plugin namespace.
---- @return TermnaviMark[] |TermnaviMark|
+--- @return TermnaviMark[] # |TermnaviMark|
 function M.list()
   return require("termnavi.command").list()
 end

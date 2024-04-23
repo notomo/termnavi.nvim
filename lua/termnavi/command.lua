@@ -42,15 +42,18 @@ end
 function M.list()
   local bufnr = vim.api.nvim_get_current_buf()
   local extmarks = vim.api.nvim_buf_get_extmarks(bufnr, ns, 0, -1, { details = true })
-  return vim.tbl_map(function(extmark)
-    local row = extmark[2]
-    local end_row = extmark[4].end_row
-    return {
-      id = extmark[1],
-      row = row + 1,
-      end_row = end_row,
-    }
-  end, extmarks)
+  return vim
+    .iter(extmarks)
+    :map(function(extmark)
+      local row = extmark[2]
+      local end_row = extmark[4].end_row
+      return {
+        id = extmark[1],
+        row = row + 1,
+        end_row = end_row,
+      }
+    end)
+    :totable()
 end
 
 local move_cursor = function(window_id, extmark)

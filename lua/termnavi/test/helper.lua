@@ -37,9 +37,12 @@ function helper.open_terminal_sync()
     if data[#data] == "" then
       data[#data] = nil
     end
-    local msgs = vim.tbl_map(function(d)
-      return prefix .. d
-    end, data)
+    local msgs = vim
+      .iter(data)
+      :map(function(d)
+        return prefix .. d
+      end)
+      :totable()
     local msg = table.concat(msgs, "\n")
     vim.api.nvim_echo({ { msg } }, true, {})
   end

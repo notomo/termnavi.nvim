@@ -1,5 +1,6 @@
 local helper = require("termnavi.test.helper")
 local termnavi = helper.require("termnavi")
+local assert = require("assertlib").typed(assert)
 
 describe("termnavi.mark()", function()
   before_each(helper.before_each)
@@ -31,7 +32,7 @@ describe("termnavi.mark()", function()
     helper.wait_terminal("^first$")
 
     local got = termnavi.list()[1]
-    assert.equals(1, got.row)
+    assert.equal(1, got.row)
   end)
 
   it("can decorate by extmark_opts", function()
@@ -47,7 +48,7 @@ describe("termnavi.mark()", function()
 
     local ns = vim.api.nvim_create_namespace("termnavi")
     local extmark = vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, { details = true })[1]
-    assert.equals("CursorLine", extmark[4].hl_group)
+    assert.equal("CursorLine", extmark[4].hl_group)
   end)
 
   it("shows warning if line count exceeds scrollback", function()
@@ -171,7 +172,7 @@ describe("termnavi.list()", function()
 
   it("returns empty list if there is no marks", function()
     local got = termnavi.list()
-    assert.is_same({}, got)
+    assert.same({}, got)
   end)
 
   it("returns marks", function()
@@ -200,7 +201,7 @@ describe("termnavi.list()", function()
         end_row = 3,
       },
     }
-    assert.is_same(want, got)
+    assert.same(want, got)
   end)
 end)
 

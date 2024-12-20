@@ -47,7 +47,8 @@ function helper.open_terminal_sync()
     vim.api.nvim_echo({ { msg } }, true, {})
   end
 
-  local job_id = vim.fn.termopen({ "bash", "--noprofile", "--norc", "-eo", "pipefail" }, {
+  local job_id = vim.fn.jobstart({ "bash", "--noprofile", "--norc", "-eo", "pipefail" }, {
+    term = true,
     on_stdout = function(_, data, _)
       echo("[stdout] ", data)
     end,

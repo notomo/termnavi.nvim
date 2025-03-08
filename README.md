@@ -1,5 +1,8 @@
 # termnavi.nvim
 
+> [!NOTE]
+> Use neovim builtin OSC 133 support.
+
 This plugin provides function to navigate on neovim terminal.
 
 ## Example
